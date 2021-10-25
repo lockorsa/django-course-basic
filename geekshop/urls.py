@@ -1,9 +1,10 @@
 from django.urls import path
 
-from geekshop import views
+from geekshop import views as geekshop
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('products/', views.products, name='products'),
-    path('contacts/', views.contact, name='contacts'),
+    path('', geekshop.index, name='index'),
+    path('contacts/', geekshop.contact, name='contacts'),
+    path('products/', geekshop.products, name='products'),
+    path('products/<slug:slug>', geekshop.product_category, name='category'),
 ]
