@@ -23,6 +23,7 @@ def products(request):
 
 def product_category(request, slug: str):
     context = {
-        'category': ProductCategory.objects.get(slug=slug),
+        'categories': ProductCategory.objects.all(),
+        'current_category': ProductCategory.objects.get(slug=slug),
     }
-    return render(request, 'geekshop/products.html', context=context)
+    return render(request, 'geekshop/product_category.html', context=context)
