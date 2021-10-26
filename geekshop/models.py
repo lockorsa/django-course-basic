@@ -9,12 +9,10 @@ class BaseModel(models.Model):
 
     name = models.CharField(max_length=max_length, verbose_name='Название')
     description = models.TextField(blank=True, verbose_name='Описание')
-
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата добавления',
         )
-
     updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name='Дата последнего изменения',

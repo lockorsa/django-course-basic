@@ -1,0 +1,158 @@
+[
+    {
+        "model": "geekshop.Product",
+        "pk": 1,
+        "fields": {
+            "name": "Простая табуретка",
+            "description": "",
+            "price": 1000,
+            "quantity": 50,
+            "image": "products/product_1.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 2,
+        "fields": {
+            "name": "Еще табуретка",
+            "description": "",
+            "price": 1500,
+            "quantity": 50,
+            "image": "products/product_2.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 3,
+        "fields": {
+            "name": "Табурет",
+            "description": "",
+            "price": 2000,
+            "quantity": 50,
+            "image": "products/product_3.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 4,
+        "fields": {
+            "name": "Синее кресло",
+            "description": "",
+            "price": 4000,
+            "quantity": 50,
+            "image": "products/product_4.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 5,
+        "fields": {
+            "name": "Мягкое кресло",
+            "description": "",
+            "price": 5000,
+            "quantity": 50,
+            "image": "products/product_5.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 6,
+        "fields": {
+            "name": "Еще одно кресло",
+            "description": "",
+            "price": 5500,
+            "quantity": 50,
+            "image": "products/product_6.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 7,
+        "fields": {
+            "name": "Cougar",
+            "description": "",
+            "price": 12000,
+            "quantity": 10,
+            "image": "products/product_7.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 8,
+        "fields": {
+            "name": "AKRacing",
+            "description": "",
+            "price": 21000,
+            "quantity": 7,
+            "image": "products/product_8.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 9,
+        "fields": {
+            "name": "DXRacer",
+            "description": "",
+            "price": 35000,
+            "quantity": 5,
+            "image": "products/product_9.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 10,
+        "fields": {
+            "name": "Трон Наполеона",
+            "description": "",
+            "price": 140000,
+            "quantity": 1,
+            "image": "products/product_10.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 11,
+        "fields": {
+            "name": "Трон Ивана IV Грозного",
+            "description": "",
+            "price": 460000,
+            "quantity": 1,
+            "image": "products/product_11.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.Product",
+        "pk": 12,
+        "fields": {
+            "name": "Железный трон Вестероса",
+            "description": "",
+            "price": 850000,
+            "quantity": 1,
+            "image": "products/product_12.jpg",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    }
+]

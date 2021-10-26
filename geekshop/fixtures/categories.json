@@ -1,0 +1,46 @@
+[
+    {
+        "model": "geekshop.ProductCategory",
+        "pk": 1,
+        "fields": {
+            "name": "Табуретки",
+            "description": "Для любителей классики",
+            "products": [1, 2, 3],
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.ProductCategory",
+        "pk": 2,
+        "fields": {
+            "name": "Кресла",
+            "description": "Для любителей повышенного комфорта в положении сидя",
+            "products": [4, 5, 6],
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.ProductCategory",
+        "pk": 3,
+        "fields": {
+            "name": "Игровые",
+            "description": "Для гое... геймеров, +10 к скиллу",
+            "products": [7, 8, 9],
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "geekshop.ProductCategory",
+        "pk": 4,
+        "fields": {
+            "name": "Троны",
+            "description": "Для самых притязательных клиентов",
+            "products": [10, 11, 12],
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    }
+]
