@@ -1,5 +1,8 @@
+"""Модели товара и категории/коллекции товаров."""
 from django.db import models
 from django.urls import reverse
+
+from geekshop.slugifier import slugify
 
 
 class BaseModel(models.Model):
@@ -7,18 +10,22 @@ class BaseModel(models.Model):
 
     max_length = 32
 
-    name = models.CharField(max_length=max_length, verbose_name='Название')
-    description = models.TextField(blank=True, verbose_name='Описание')
-
+    name = models.CharField(
+        max_length=max_length,
+        verbose_name='Название',
+    )
+    description = models.TextField(
+        blank=True,
+        verbose_name='Описание',
+    )
     created_at = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата добавления',
-        )
-
+    )
     updated_at = models.DateTimeField(
         auto_now=True,
         verbose_name='Дата последнего изменения',
-        )
+    )
 
     def __str__(self):
         """Возвращает название продукта/категории."""
@@ -31,7 +38,8 @@ class BaseModel(models.Model):
 
 
 class ProductCategory(BaseModel):
-    """Категория/коллекция товаров.
+    """
+    Категория/коллекция товаров.
 
     Категория имеет свой url и может ссылаться на любое количество товаров.
 
@@ -42,15 +50,28 @@ class ProductCategory(BaseModel):
     [__str__]
     """
 
+    slug = models.SlugField(
+        unique=True,
+        verbose_name='URL',
+    )
     products = models.ManyToManyField(
         'Product',
         verbose_name='Товары в категории',
-        )
-
-    slug = models.SlugField()
+    )
 
     def get_absolute_url(self):
-        return reverse('category', kwargs={'slug': self.slug})
+        """Метод для получения абсолютного пути в шаблонах."""
+        return reverse(viewname='category', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        """
+        Перезаписанный метод сохранения.
+
+        Заполняет поля slug, created_at, updated_at
+        """
+        if self.slug == '':
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
 
     class Meta(object):
         verbose_name = 'Категория'
@@ -58,9 +79,10 @@ class ProductCategory(BaseModel):
 
 
 class Product(BaseModel):
-    """Товар в магазине.
+    """
+    Товар в магазине.
 
-    Товар имеет свой url, цену, количество и фото.
+    Товар имеет свою цену, количество и фото.
 
     Наследует поля:
     [name, description, created_at, updated_at, slug(url)]
@@ -74,12 +96,15 @@ class Product(BaseModel):
         decimal_places=2,
         default=0,
         verbose_name='Цена',
-        )
+    )
     quantity = models.PositiveSmallIntegerField(
         default=0,
         verbose_name='Количество в наличии',
-        )
-    image = models.ImageField(upload_to='products', verbose_name='Фото')
+    )
+    image = models.ImageField(
+        upload_to='products',
+        verbose_name='Фото',
+    )
 
     class Meta(object):
         verbose_name = 'Товар'
