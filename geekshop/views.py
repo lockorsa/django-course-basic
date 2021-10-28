@@ -11,6 +11,7 @@ def index(request):
 
 
 def contact(request):
+    print(request)
     return render(request, 'geekshop/contact.html')
 
 
