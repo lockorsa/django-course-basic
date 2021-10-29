@@ -20,7 +20,6 @@ def register(request):
     return render(request, 'authapp/register.html', context=context)
 
 
-
 def login(request):
     login_form = ShopUserLoginForm(data=request.POST)
     if request.method == 'POST' and login_form.is_valid():

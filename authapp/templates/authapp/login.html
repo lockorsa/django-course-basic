@@ -4,7 +4,8 @@
 {% block title %}Вход{% endblock %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'login' %}" method="post">
+    <div class="h2 text-center head">Вход в систему</div> 
+    <form class="form-horizontal" action="{% url 'authapp:login' %}" method="post">
         {% csrf_token %}
         {{ login_form.as_p }}
         <input class="form-control" type="submit" value="Войти">

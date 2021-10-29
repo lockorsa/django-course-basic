@@ -6,7 +6,12 @@ from geekshop.slugifier import slugify
 
 
 class BaseModel(models.Model):
-    """Объединяет стандартные поля для всех таблиц."""
+    """
+    Абстрактный класс, наследуемый товарами и категориями.
+
+    объединяет стандартные поля:
+    [name, description, created_at, updated_at]
+    """
 
     max_length = 32
 
@@ -67,7 +72,7 @@ class ProductCategory(BaseModel):
         """
         Перезаписанный метод сохранения.
 
-        Заполняет поля slug, created_at, updated_at
+        Заполняет поле slug
         """
         if self.slug == '':
             self.slug = slugify(self.name)

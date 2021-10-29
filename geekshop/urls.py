@@ -2,6 +2,8 @@ from django.urls import path
 
 from geekshop import views as geekshop
 
+app_name = 'geekshop'
+
 urlpatterns = [
     path('', geekshop.index, name='index'),
     path('contacts/', geekshop.contact, name='contacts'),

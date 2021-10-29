@@ -4,7 +4,8 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-    <form class="form-horizontal" action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+    <div class="h2 text-center head">Регистрация</div> 
+    <form class="form-horizontal" action="{% url 'authapp:register' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ register_form.as_p }}
         <input class="form-control" type="submit" value="Зарегистрироваться">

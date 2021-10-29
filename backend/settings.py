@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'authapp',
+    'basket',
     'geekshop',
-    'newsapp',
 ]
 
 MIDDLEWARE = [
