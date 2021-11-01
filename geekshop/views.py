@@ -1,3 +1,5 @@
+from random import choice as random_choice
+
 from django.shortcuts import render
 
 from geekshop.models import Product, ProductCategory
@@ -18,6 +20,7 @@ def contact(request):
 def products(request):
     context = {
         'categories': ProductCategory.objects.all(),
+        'promotion_product': random_choice(Product.objects.all()),
     }
     return render(request, 'geekshop/products.html', context=context)
 

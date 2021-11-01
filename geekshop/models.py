@@ -66,7 +66,7 @@ class ProductCategory(BaseModel):
 
     def get_absolute_url(self):
         """Метод для получения абсолютного пути в шаблонах."""
-        return reverse(viewname='category', kwargs={'slug': self.slug})
+        return reverse(viewname='geekshop:category', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         """

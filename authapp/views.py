@@ -11,7 +11,7 @@ def register(request):
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
         if register_form.is_valid():
             register_form.save()
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('geekshop:index'))
     else:
         register_form = ShopUserRegisterForm()
     context = {
@@ -30,7 +30,7 @@ def login(request):
 
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('geekshop:index'))
 
     context = {
         'login_form': login_form,
@@ -40,7 +40,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('geekshop:index'))
 
 
 def edit(request):
@@ -52,7 +52,7 @@ def edit(request):
         )
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('edit'))
+            return HttpResponseRedirect(reverse('authapp:edit'))
     else:
         edit_form = ShopUserEditForm(instance=request.user)
     context = {

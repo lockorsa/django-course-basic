@@ -1,15 +1,15 @@
-<a href="{% url 'index' %}" class="logo"></a>
+<a href="{% url 'geekshop:index' %}" class="logo"></a>
 <ul class="menu">
-    <li><a href="{% url 'index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>домой</a></li>
-    <li><a href="{% url 'products' %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'category' %}class="active"{% endif %}>продукты</a></li>
-    <li><a href="{% url 'contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
+    <li><a href="{% url 'geekshop:index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>домой</a></li>
+    <li><a href="{% url 'geekshop:products' %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'category' %}class="active"{% endif %}>продукты</a></li>
+    <li><a href="{% url 'geekshop:contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
     {% if user.is_authenticated %}
-        <li><a href="{% url 'edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
-        <li><a href="{% url 'logout' %}">выйти</a></li>
+        <li><a href="{% url 'authapp:edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
+        <li><a href="{% url 'authapp:logout' %}">выйти</a></li>
     {% else %}
-        <li><a href="{% url 'register' %}">регистрация</a></li>
-        <li><a href="{% url 'login' %}">войти</a></li>
+        <li><a href="{% url 'authapp:register' %}">регистрация</a></li>
+        <li><a href="{% url 'authapp:login' %}">войти</a></li>
     {% endif %}
 </ul>
 <a href="#" class="search"></a>
-<a href="#" class="basket"></a>
+<a href="{% url 'basket:basket' %}" class="basket"></a>
