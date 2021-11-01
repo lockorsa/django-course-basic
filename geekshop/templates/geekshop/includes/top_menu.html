@@ -3,6 +3,7 @@
     <li><a href="{% url 'geekshop:index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>домой</a></li>
     <li><a href="{% url 'geekshop:products' %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'category' %}class="active"{% endif %}>продукты</a></li>
     <li><a href="{% url 'geekshop:contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
+    <li><a href="{% url 'news:news' %}" {% if request.resolver_match.url_name == 'news' %}class="active"{% endif %}>новости</a></li>
     {% if user.is_authenticated %}
         <li><a href="{% url 'authapp:edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
         <li><a href="{% url 'authapp:logout' %}">выйти</a></li>

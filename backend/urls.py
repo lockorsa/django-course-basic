@@ -22,9 +22,10 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('geekshop.urls', namespace='geekshop')),
     path('', include('authapp.urls', namespace='authapp')),
-    path('basket', include('basket.urls', namespace='basket')),
+    path('basket/', include('basket.urls', namespace='basket')),
+    path('', include('geekshop.urls', namespace='geekshop')),
+    path('news/', include('news.urls', namespace='news')),
 ]
 
 if settings.DEBUG:

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'authapp',
     'basket',
+    'news',
     'geekshop',
 ]
 
