@@ -1,0 +1,28 @@
+{% extends 'geekshop/base.html' %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+
+{% block header %}
+	<div class="hero">
+		<div class="header clearfix">
+			{% include 'geekshop/includes/top_menu.html'%}
+		</div>
+		<h1>новости</h1>
+	</div>
+{% endblock %}
+
+{% block content %}
+    {% if articles %}
+        {% for article in articles %}
+            <a href="{{ article.get_absolute_url }}">
+                <h3>{{ article.name }}</h3>
+                <p>Тут будет краткое содержание стаьи</p>
+                <p>Стили тоже потом</p>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>Новостей пока нет...</p>
+    {% endif %}
+{% endblock %}
+
