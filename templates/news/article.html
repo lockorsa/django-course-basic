@@ -1,4 +1,4 @@
-{% extends 'geekshop/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}{{ article.name }}{% endblock %}
@@ -6,7 +6,7 @@
 {% block header %}
 	<div class="hero">
 		<div class="header clearfix">
-			{% include 'geekshop/includes/top_menu.html'%}
+			{% include 'includes/top_menu.html'%}
 		</div>
 		<h1>{{ article.name }}</h1>
 	</div>

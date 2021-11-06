@@ -1,6 +1,6 @@
 # django-course-basic
 
-Развертывание:
+# Развертывание:
 (poetry update | poetry shell)
 миграции
 (для товаров и категорий важен порядок, у категорий ManyToManyField к продуктам)

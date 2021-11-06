@@ -1,4 +1,4 @@
-{% extends 'geekshop/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}Каталог{% endblock %}
@@ -7,7 +7,7 @@
 	<div class="hero-white">
 		<div class="header clearfix">
 
-			{% include 'geekshop/includes/top_menu.html'%}
+			{% include 'includes/top_menu.html'%}
 
 		</div>
 	</div>
@@ -16,7 +16,7 @@
 {% block content %}
 	<div class="details">
 
-		{% include 'geekshop/includes/categories_menu.html' %}
+		{% include 'includes/categories_menu.html' %}
 
 		<h3>{{ current_category.description }}</h3>
 
