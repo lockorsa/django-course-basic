@@ -1,8 +1,8 @@
-<a href="{% url 'geekshop:index' %}" class="logo"></a>
+<a href="{% url 'index:index' %}" class="logo"></a>
 <ul class="menu">
-    <li><a href="{% url 'geekshop:index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>домой</a></li>
-    <li><a href="{% url 'geekshop:products' %}" {% if request.resolver_match.url_name == 'products' or request.resolver_match.url_name == 'category' %}class="active"{% endif %}>продукты</a></li>
-    <li><a href="{% url 'geekshop:contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
+    <li><a href="{% url 'index:index' %}" {% if request.resolver_match.url_name == 'index' %}class="active"{% endif %}>домой</a></li>
+    <li><a href="{% url 'geekshop:products' %}" {% if request.resolver_match.url_name in 'products' and 'products' and 'category' %}class="active"{% endif %}>продукты</a></li>
+    <li><a href="{% url 'index:contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
     <li><a href="{% url 'news:news' %}" {% if request.resolver_match.url_name == 'news' %}class="active"{% endif %}>новости</a></li>
     {% if user.is_authenticated %}
         <li><a href="{% url 'authapp:edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
@@ -13,4 +13,9 @@
     {% endif %}
 </ul>
 <a href="#" class="search"></a>
-<a href="{% url 'basket:basket' %}" class="basket"></a>
+<a href="{% url 'basket:basket' %}" class="basket" style="width: 120px, font-size: 12px">
+    {% if basket %}
+        {{ basket.products_price | floatformat:0 }} руб<br>
+        {{ basket.products_count }} шт
+    {% endif %}
+</a>

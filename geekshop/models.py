@@ -1,8 +1,7 @@
 """Модели товара и категории/коллекции товаров."""
+from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
-
-from geekshop.slugifier import slugify
 
 
 class BaseModel(models.Model):
@@ -31,6 +30,12 @@ class BaseModel(models.Model):
         auto_now=True,
         verbose_name='Дата последнего изменения',
     )
+    slug = AutoSlugField(
+        populate_from='name',
+        editable=True,
+        unique_with='name',
+        verbose_name='URL',
+    )
 
     def __str__(self):
         """Возвращает название продукта/категории."""
@@ -55,28 +60,18 @@ class ProductCategory(BaseModel):
     [__str__]
     """
 
-    slug = models.SlugField(
-        unique=True,
-        verbose_name='URL',
-    )
     products = models.ManyToManyField(
         'Product',
+        related_name='categories',
         verbose_name='Товары в категории',
     )
 
     def get_absolute_url(self):
         """Метод для получения абсолютного пути в шаблонах."""
-        return reverse(viewname='geekshop:category', kwargs={'slug': self.slug})
-
-    def save(self, *args, **kwargs):
-        """
-        Перезаписанный метод сохранения.
-
-        Заполняет поле slug
-        """
-        if self.slug == '':
-            self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)
+        return reverse(
+            viewname='geekshop:category',
+            kwargs={'slug': self.slug},
+        )
 
     class Meta(object):
         verbose_name = 'Категория'
@@ -111,6 +106,13 @@ class Product(BaseModel):
         verbose_name='Фото',
     )
 
+    def get_absolute_url(self):
+        """Метод для получения абсолютного пути в шаблонах."""
+        return reverse(
+            viewname='geekshop:product',
+            kwargs={'slug': self.slug},
+        )
+    
     class Meta(object):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'

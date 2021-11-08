@@ -20,7 +20,7 @@
 
 {% block content %}
 	<div class="container py-3">
-        <div id="cart">
+        <div id="basket">
 			{% if basket.products.all %}
 				<div class="table-responsive">
 					<table class="table text-center">
@@ -33,9 +33,9 @@
 							</tr>
 						</thead>
 
-						<tbody id="${this.tableType}-list">
+						<tbody id="product_list">
 							{% for item in basket_items %}
-								<tr id="${this.tableType}-${id}">
+								<tr id="basket">
 									<th scope="row" class="text-start">{{ item.product.name }}</th>    
 									<td>{{ item.product.price }}</td>
 									<td>{{ item.count }}</td>
@@ -51,12 +51,12 @@
 							{% endfor %}
 						</tbody>
 					</table>
-					<p id="cart-info">
+					<p id="basket-info">
 						В корзине: {{ basket.products_count }} товаров на сумму {{ basket.products_price }} рублей
 					</p>
 				</div>
 			{% else %}
-				<h2 id="cart-empty-message" class="display-6 text-center mb-4">Корзина пуста...</h2>
+				<h2 id="basket-empty-message" class="display-6 text-center mb-4">Корзина пуста...</h2>
 			{% endif %}
         </div>
     </div>

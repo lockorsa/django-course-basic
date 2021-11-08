@@ -22,6 +22,9 @@ def register(request):
 
 def login(request):
     login_form = ShopUserLoginForm(data=request.POST)
+
+    next_param = request.GET.get('next', '')
+
     if request.method == 'POST' and login_form.is_valid():
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -30,17 +33,20 @@ def login(request):
 
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect(reverse('geekshop:index'))
+            if 'next' in request.POST:
+                return HttpResponseRedirect(request.POST.get('next'))
+            return HttpResponseRedirect(reverse('index:index'))
 
     context = {
         'login_form': login_form,
+        'next': next_param,
     }
     return render(request, 'authapp/login.html', context=context)
 
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reverse('geekshop:index'))
+    return HttpResponseRedirect(reverse('index:index'))
 
 
 def edit(request):

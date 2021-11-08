@@ -23,8 +23,9 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('authapp.urls', namespace='authapp')),
-    path('basket/', include('basket.urls', namespace='basket')),
+    path('', include('index.urls', namespace='index')),
     path('', include('geekshop.urls', namespace='geekshop')),
+    path('basket/', include('basket.urls', namespace='basket')),
     path('news/', include('news.urls', namespace='news')),
 ]
 

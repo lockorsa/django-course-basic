@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name | title }}{% endblock %}
+
+{% block header %}
+	<div class="hero-white">
+		<div class="header clearfix">
+			{% include 'includes/top_menu.html'%}
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="details">
+		{% include 'includes/categories_menu.html' %}
+
+        <div class="details-products">
+			<div class="details-slider">
+				<div class="slider-product">
+					<a href="{{ product.get_absolute_url }}">
+						<img src="{{ product.image.url }}" style="height: 570px; width: 570px;">
+					</a>
+				</div>
+			</div>
+
+			<div class="description">
+				<h3 class="big-bold">{{ product.name | title }}</h3>
+				<h3 class="red">горячее предложение</h3>
+				<p class="price">{{ product.price | floatformat:1 }}<span>руб</span></p>
+				<a href="{% url 'basket:add' product.pk %}" class="red-button">
+					заказать<i class="fa fa-chevron-right" aria-hidden="true"></i>
+				</a>
+				<div class="description-text">
+					<p>Расположитесь комфортно.</p> 
+					<p>Отличное качество материалов
+					позволит вам это.</p> 
+					<p>Различные цвета</p>
+					<p>высочайший уровень
+					эргономики и прочность.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

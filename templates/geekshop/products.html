@@ -21,7 +21,9 @@
 		<div class="details-products">
 			<div class="details-slider">
 				<div class="slider-product">
-					<img src="{{ promotion_product.image.url }}" style="height: 570px; width: 570px;">
+					<a href="{{ promotion_product.get_absolute_url }}">
+						<img src="{{ promotion_product.image.url }}" style="height: 570px; width: 570px;">
+					</a>
 				</div>
 			</div>
 

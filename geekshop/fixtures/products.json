@@ -8,6 +8,7 @@
             "price": 1000,
             "quantity": 50,
             "image": "products/product_1.jpg",
+            "slug": "prostaya_taburetka",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -21,6 +22,7 @@
             "price": 1500,
             "quantity": 50,
             "image": "products/product_2.jpg",
+            "slug": "eshe_taburetka",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -34,6 +36,7 @@
             "price": 2000,
             "quantity": 50,
             "image": "products/product_3.jpg",
+            "slug": "taburet",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -47,6 +50,7 @@
             "price": 4000,
             "quantity": 50,
             "image": "products/product_4.jpg",
+            "slug": "sinee_kreslo",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -60,6 +64,7 @@
             "price": 5000,
             "quantity": 50,
             "image": "products/product_5.jpg",
+            "slug": "myagkoe_kreslo",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -73,6 +78,7 @@
             "price": 5500,
             "quantity": 50,
             "image": "products/product_6.jpg",
+            "slug": "eshe_odno_kreslo",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -86,6 +92,7 @@
             "price": 12000,
             "quantity": 10,
             "image": "products/product_7.jpg",
+            "slug": "cougar",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -99,6 +106,7 @@
             "price": 21000,
             "quantity": 7,
             "image": "products/product_8.jpg",
+            "slug": "akracing",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -112,6 +120,7 @@
             "price": 35000,
             "quantity": 5,
             "image": "products/product_9.jpg",
+            "slug": "dxracer",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -125,6 +134,7 @@
             "price": 140000,
             "quantity": 1,
             "image": "products/product_10.jpg",
+            "slug": "tron_napoleona",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -138,6 +148,7 @@
             "price": 460000,
             "quantity": 1,
             "image": "products/product_11.jpg",
+            "slug": "tron_ivana_iv_groznogo",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }
@@ -151,6 +162,7 @@
             "price": 850000,
             "quantity": 1,
             "image": "products/product_12.jpg",
+            "slug": "zhelezny_tron_vesterosa",
             "created_at": "2021-10-27 00:00:00",
             "updated_at": "2021-10-27 00:00:00"
         }

@@ -6,9 +6,7 @@
 {% block header %}
 	<div class="hero-white">
 		<div class="header clearfix">
-
 			{% include 'includes/top_menu.html'%}
-
 		</div>
 	</div>
 {% endblock %}
@@ -24,7 +22,9 @@
 			<div class="details-products">
 				<div class="details-slider">
 					<div class="slider-product">
-						<img src="{{ product.image.url }}" style="height: 570px; width: 570px;">
+						<a href="{{ product.get_absolute_url }}">
+							<img src="{{ product.image.url }}" style="height: 570px; width: 570px;">
+						</a>
 					</div>
 				</div>
 

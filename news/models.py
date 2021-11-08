@@ -1,7 +1,6 @@
+from autoslug import AutoSlugField
 from django.db import models
 from django.urls import reverse
-
-from geekshop.slugifier import slugify
 
 
 class Article(models.Model):
@@ -16,23 +15,16 @@ class Article(models.Model):
         default=True,
         verbose_name='Статья опубликована',
     )
-    slug = models.SlugField(unique=True)
+    slug = AutoSlugField(
+        populate_from='name',
+        unique=True,
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
         """Метод для получения абсолютного пути в шаблонах."""
         return reverse(viewname='news:article', kwargs={'slug': self.slug})
-
-    def save(self, *args, **kwargs):
-        """
-        Перезаписанный метод сохранения.
-
-        Заполняет поле slug
-        """
-        if self.slug == '':
-            self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Статья'
