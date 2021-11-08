@@ -1,28 +1,33 @@
-from django.shortcuts import render
+from random import choice as random_choice
 
+from django.shortcuts import get_object_or_404, render
+
+from basket.services import get_basket_or_create
 from geekshop.models import Product, ProductCategory
-
-
-def index(request):
-    context = {
-        'products': Product.objects.all()[:4]
-    }
-    return render(request, 'geekshop/index.html', context=context)
-
-
-def contact(request):
-    return render(request, 'geekshop/contact.html')
 
 
 def products(request):
     context = {
         'categories': ProductCategory.objects.all(),
+        'promotion_product': random_choice(Product.objects.all()),
+        'basket': get_basket_or_create(request.user),
     }
     return render(request, 'geekshop/products.html', context=context)
 
 
 def product_category(request, slug: str):
     context = {
-        'category': ProductCategory.objects.get(slug=slug),
+        'categories': ProductCategory.objects.all(),
+        'current_category': get_object_or_404(ProductCategory, slug=slug),
+        'basket': get_basket_or_create(request.user),
     }
-    return render(request, 'geekshop/products.html', context=context)
+    return render(request, 'geekshop/product_category.html', context=context)
+
+
+def product(request, slug: str):
+    context = {
+        'categories': ProductCategory.objects.all(),
+        'product': get_object_or_404(Product, slug=slug),
+        'basket': get_basket_or_create(request.user),
+    }
+    return render(request, 'geekshop/product.html', context=context)
