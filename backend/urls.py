@@ -21,7 +21,9 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin_legacy/', admin.site.urls),
+    path('admin/', include('adminapp.urls', namespace='adminapp')),
+
     path('', include('authapp.urls', namespace='authapp')),
     path('', include('index.urls', namespace='index')),
     path('', include('geekshop.urls', namespace='geekshop')),

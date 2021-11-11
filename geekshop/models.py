@@ -36,6 +36,7 @@ class BaseModel(models.Model):
         unique_with='name',
         verbose_name='URL',
     )
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         """Возвращает название продукта/категории."""
@@ -47,7 +48,7 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class ProductCategory(BaseModel):
+class Category(BaseModel):
     """
     Категория/коллекция товаров.
 

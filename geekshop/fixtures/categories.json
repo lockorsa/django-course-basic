@@ -1,6 +1,6 @@
 [
     {
-        "model": "geekshop.ProductCategory",
+        "model": "geekshop.Category",
         "pk": 1,
         "fields": {
             "name": "Табуретки",
@@ -12,7 +12,7 @@
         }
     },
     {
-        "model": "geekshop.ProductCategory",
+        "model": "geekshop.Category",
         "pk": 2,
         "fields": {
             "name": "Кресла",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "geekshop.ProductCategory",
+        "model": "geekshop.Category",
         "pk": 3,
         "fields": {
             "name": "Игровые",
@@ -36,7 +36,7 @@
         }
     },
     {
-        "model": "geekshop.ProductCategory",
+        "model": "geekshop.Category",
         "pk": 4,
         "fields": {
             "name": "Троны",

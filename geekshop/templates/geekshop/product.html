@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'index/base.html' %}
 {% load static %}
 
 {% block title %}{{ product.name | title }}{% endblock %}
@@ -6,14 +6,14 @@
 {% block header %}
 	<div class="hero-white">
 		<div class="header clearfix">
-			{% include 'includes/top_menu.html'%}
+			{% include 'index/includes/top_menu.html'%}
 		</div>
 	</div>
 {% endblock %}
 
 {% block content %}
 	<div class="details">
-		{% include 'includes/categories_menu.html' %}
+		{% include 'geekshop/includes/categories_menu.html' %}
 
         <div class="details-products">
 			<div class="details-slider">
