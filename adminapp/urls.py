@@ -15,9 +15,9 @@ urlpatterns = [
     path('category/update/<int:pk>/', adminapp_views.category_update, name='category_update'),
     path('category/delete/<int:pk>/', adminapp_views.category_delete, name='category_delete'),
     
-    path('products/', adminapp_views.products, name='products'),
-    path('product/create', adminapp_views.product_create, name='product_create'),
+    path('products/<int:pk>/', adminapp_views.products, name='products'),
+    path('product/create/<int:pk>/', adminapp_views.product_create, name='product_create'),
+    path('product/detail/<int:pk>/', adminapp_views.product_detail, name='product_detail'),
     path('product/update/<int:pk>/', adminapp_views.product_update, name='product_update'),
     path('product/delete/<int:pk>/', adminapp_views.product_delete, name='product_delete'),
-    path('product/detail/<int:pk>/', adminapp_views.product_datail, name='product_datail'),
 ]

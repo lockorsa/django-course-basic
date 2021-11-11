@@ -4,6 +4,9 @@
     <li><a href="{% url 'geekshop:products' %}" {% if request.resolver_match.url_name in 'products' and 'products' and 'category' %}class="active"{% endif %}>продукты</a></li>
     <li><a href="{% url 'index:contacts' %}" {% if request.resolver_match.url_name == 'contacts' %}class="active"{% endif %}>контакты</a></li>
     <li><a href="{% url 'news:news' %}" {% if request.resolver_match.url_name == 'news' %}class="active"{% endif %}>новости</a></li>
+    {% if user.is_superuser%}
+        <li><a href="{% url 'adminapp:admin' %}">админка</a></li>
+    {% endif %}
     {% if user.is_authenticated %}
         <li><a href="{% url 'authapp:edit' %}">{{ user.first_name|default:'Пользователь' }}</a></li>
         <li><a href="{% url 'authapp:logout' %}">выйти</a></li>

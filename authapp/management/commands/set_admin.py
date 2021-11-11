@@ -18,5 +18,7 @@ class Command(BaseCommand):
             birth_date=birth_date,
         )
 
+        print('SUCCESS')
+
     def get_date_above_age_limit(self) -> dt.date:
         return dt.date.today() - dt.timedelta(days=self.age_limit * 366)

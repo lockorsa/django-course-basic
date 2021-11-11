@@ -17,6 +17,7 @@ class BaseModel(models.Model):
     name = models.CharField(
         max_length=max_length,
         verbose_name='Название',
+        unique=True,
     )
     description = models.TextField(
         blank=True,

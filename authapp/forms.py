@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+
 from authapp.models import ShopUser
 
 
@@ -22,7 +23,8 @@ class ShopUserRegisterForm(UserCreationForm):
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
             if field_name == 'birth_date':
-                field.widget = forms.SelectDateWidget()
+                years_range = [year for year in range(2010, 1920, -1)]
+                field.widget = forms.SelectDateWidget(years=years_range)
 
     class Meta:
         model = ShopUser
@@ -53,7 +55,8 @@ class ShopUserEditForm(UserChangeForm):
             if field_name == 'password':
                 field.widget = forms.HiddenInput()
             if field_name == 'birth_date':
-                field.widget = forms.SelectDateWidget()
+                years_range = [year for year in range(2010, 1920, -1)]
+                field.widget = forms.SelectDateWidget(years=years_range)
 
     class Meta:
         model = ShopUser
