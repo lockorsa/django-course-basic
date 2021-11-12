@@ -1,28 +1,39 @@
-from django.shortcuts import render
+from random import choice as random_choice
 
-from geekshop.models import Product, ProductCategory
+from django.shortcuts import get_object_or_404, render
 
-
-def index(request):
-    context = {
-        'products': Product.objects.all()[:4]
-    }
-    return render(request, 'geekshop/index.html', context=context)
-
-
-def contact(request):
-    return render(request, 'geekshop/contact.html')
+from basket.services import get_basket_or_create
+from geekshop.models import Product, Category
 
 
 def products(request):
     context = {
-        'categories': ProductCategory.objects.all(),
+        'basket': get_basket_or_create(request.user),
+        'categories': Category.objects.filter(is_active=True),
+        'promotion_product': random_choice(
+            Product.objects.filter(is_active=True),
+        ),
     }
     return render(request, 'geekshop/products.html', context=context)
 
 
 def product_category(request, slug: str):
     context = {
-        'category': ProductCategory.objects.get(slug=slug),
+        'basket': get_basket_or_create(request.user),
+        'categories': Category.objects.filter(is_active=True),
+        'current_category': get_object_or_404(
+            Category,
+            slug=slug,
+            is_active=True,
+        ),
     }
-    return render(request, 'geekshop/products.html', context=context)
+    return render(request, 'geekshop/product_category.html', context=context)
+
+
+def product(request, slug: str):
+    context = {
+        'basket': get_basket_or_create(request.user),
+        'categories': Category.objects.filter(is_active=True),
+        'product': get_object_or_404(Product, slug=slug, is_active=True),
+    }
+    return render(request, 'geekshop/product.html', context=context)

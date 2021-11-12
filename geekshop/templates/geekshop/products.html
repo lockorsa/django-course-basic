@@ -1,4 +1,4 @@
-{% extends 'geekshop/base.html' %}
+{% extends 'index/base.html' %}
 {% load static %}
 
 {% block title %}Каталог{% endblock %}
@@ -7,7 +7,7 @@
 	<div class="hero-white">
 		<div class="header clearfix">
 
-			{% include 'geekshop/includes/top_menu.html'%}
+			{% include 'index/includes/top_menu.html'%}
 
 		</div>
 	</div>
@@ -21,33 +21,18 @@
 		<div class="details-products">
 			<div class="details-slider">
 				<div class="slider-product">
-					<img src="{% static 'img/slider1.jpg' %}">
-				</div>
-				<div class="slider-control">
-					<div class="block">
-						<a href="#"><img src="{% static 'img/controll.jpg' %}" alt="">
-							<div class="text"></div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="{% static 'img/controll1.jpg' %}" alt="">
-							<div class="text"></div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src="{% static 'img/controll2.jpg' %}" alt="">
-							<div class="text"></div>
-						</a>
-					</div>
+					<a href="{{ promotion_product.get_absolute_url }}">
+						<img src="{{ promotion_product.image.url }}" style="height: 570px; width: 570px;">
+					</a>
 				</div>
 			</div>
 
 			<div class="description">
-				<h3 class="big-bold">Отличный стул</h3>
+				<h3 class="big-bold">{{ promotion_product.name | title }}</h3>
 				<h3 class="red">горячее предложение</h3>
-				<p class="price"> 2585.9 <span>руб</span></p>
-				<a href="#" class="red-button">
-					заказать <i class="fa fa-chevron-right" aria-hidden="true"></i>
+				<p class="price">{{ promotion_product.price | floatformat:1 }}<span>руб</span></p>
+				<a href="{% url 'basket:add' promotion_product.pk %}" class="red-button">
+					заказать<i class="fa fa-chevron-right" aria-hidden="true"></i>
 				</a>
 				<div class="description-text">
 					<p>Расположитесь комфортно.</p> 

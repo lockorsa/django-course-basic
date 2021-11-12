@@ -1,0 +1,13 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block title %}Редактировать{% endblock %}
+
+{% block content %}
+    <div class="h2 text-center head">Редактировать профиль</div> 
+    <form class="form-horizontal" action="{% url 'authapp:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        <input class="form-control" type="submit" value="Сохранить">
+    </form>
+{% endblock %}
