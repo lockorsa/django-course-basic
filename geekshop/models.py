@@ -39,6 +39,10 @@ class BaseModel(models.Model):
     )
     is_active = models.BooleanField(default=True)
 
+    def delete(self):
+        self.is_active = not self.is_active
+        self.save() 
+
     def __str__(self):
         """Возвращает название продукта/категории."""
         return self.name

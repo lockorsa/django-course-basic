@@ -1,8 +1,7 @@
-from random import choice as random_choice
-
 from django.shortcuts import get_object_or_404, render
 
 from basket.services import get_basket_or_create
+from geekshop.services import get_promotion_product
 from geekshop.models import Product, Category
 
 
@@ -10,9 +9,7 @@ def products(request):
     context = {
         'basket': get_basket_or_create(request.user),
         'categories': Category.objects.filter(is_active=True),
-        'promotion_product': random_choice(
-            Product.objects.filter(is_active=True),
-        ),
+        'promotion_product': get_promotion_product(),
     }
     return render(request, 'geekshop/products.html', context=context)
 

@@ -11,8 +11,10 @@ class ShopUser(AbstractUser):
     )
     birth_date = models.DateField(verbose_name='Дата рождения')
 
+    @property
     def age(self):
-        """Вычисляет сколько лет пользователю.
+        """
+        Вычисляет сколько лет пользователю.
 
         Требует рефакторинга
         """

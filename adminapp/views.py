@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.generic import ListView
 
 from adminapp.forms import ShopUserAdminEditForm
 from authapp.forms import ShopUserRegisterForm
@@ -9,17 +11,34 @@ from geekshop.forms import CategoryForm, ProductForm
 from geekshop.models import Category, Product
 
 
-@user_passes_test(lambda user: user.is_superuser)
-def admin(request):
-    return render(request, 'adminapp/admin.html')
+class AccessMixin:
+    @method_decorator(user_passes_test(lambda user: user.is_superuser))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserList(AccessMixin, ListView):
+    model = ShopUser
+    ordering = ['-is_active']
+    template_name = 'adminapp/users.html'
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def users(request):
+def products(request, pk: int):
     context = {
-        'object_list': ShopUser.objects.all().order_by('-is_active'),
+        'category': get_object_or_404(Category, pk=pk),
+        'object_list': Product.objects.filter(categories__pk=pk).order_by('-is_active'),
     }
-    return render(request, 'adminapp/users.html', context=context)
+    return render(request, 'adminapp/products.html', context=context)
+
+
+class ProductList(AccessMixin, ListView):
+    model = Product
+    ordering = ['-is_active']
+    template_name = 'adminapp/products.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(categories__pk=self.kwargs.get('pk'))
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -131,15 +150,6 @@ def category_delete(request, pk: int):
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def products(request, pk: int):
-    context = {
-        'category': get_object_or_404(Category, pk=pk),
-        'object_list': Product.objects.filter(categories__pk=pk).order_by('-is_active'),
-    }
-    return render(request, 'adminapp/products.html', context=context)
-
-
-@user_passes_test(lambda user: user.is_superuser)
 def product_create(request, pk: int):
     current_category = get_object_or_404(Category, pk=pk)
 
@@ -208,3 +218,8 @@ def product_detail(request, pk: int):
     return HttpResponseRedirect(reverse('geekshop:product', kwargs={
         'slug': current_product.slug,
     }))
+
+
+@user_passes_test(lambda user: user.is_superuser)
+def admin(request):
+    return render(request, 'adminapp/admin.html')
