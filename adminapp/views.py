@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, HttpResponseRedirect, render
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from adminapp.forms import ShopUserAdminEditForm
 from authapp.forms import ShopUserRegisterForm
@@ -17,19 +17,20 @@ class AccessMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
+class AdminIndex(AccessMixin, TemplateView):
+    template_name = 'adminapp/admin.html'
+
+
 class UserList(AccessMixin, ListView):
     model = ShopUser
     ordering = ['-is_active']
     template_name = 'adminapp/users.html'
 
 
-@user_passes_test(lambda user: user.is_superuser)
-def products(request, pk: int):
-    context = {
-        'category': get_object_or_404(Category, pk=pk),
-        'object_list': Product.objects.filter(categories__pk=pk).order_by('-is_active'),
-    }
-    return render(request, 'adminapp/products.html', context=context)
+class CategoryList(AccessMixin, ListView):
+    model = Category
+    ordering = ['-is_active']
+    template_name = 'adminapp/categories.html'
 
 
 class ProductList(AccessMixin, ListView):
@@ -37,8 +38,19 @@ class ProductList(AccessMixin, ListView):
     ordering = ['-is_active']
     template_name = 'adminapp/products.html'
 
-    def get_queryset(self):
-        return Product.objects.filter(categories__pk=self.kwargs.get('pk'))
+    def get_queryset(self, *args, **kwargs):
+        """Фильтруем продукты по принадлежности к выбранной категории."""
+        queryset = super().get_queryset(*args, **kwargs)
+        return queryset.filter(categories__pk=self.kwargs.get('pk'))
+
+    def get_context_data(self, *args, **kwargs):
+        """Добавляем в контекст необходимый объект категории."""
+        context = super().get_context_data(*args, **kwargs)
+        context['category'] = get_object_or_404(
+            Category,
+            pk=self.kwargs.get('pk'),
+        )
+        return context
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -90,14 +102,6 @@ def user_delete(request, pk: int):
         'object': current_user,
     }
     return render(request, 'adminapp/delete_confirm.html', context=context)
-
-
-@user_passes_test(lambda user: user.is_superuser)
-def categories(request):
-    context = {
-        'object_list': Category.objects.all().order_by('-is_active'),
-    }
-    return render(request, 'adminapp/categories.html', context=context)
 
 
 @user_passes_test(lambda user: user.is_superuser)
@@ -218,8 +222,3 @@ def product_detail(request, pk: int):
     return HttpResponseRedirect(reverse('geekshop:product', kwargs={
         'slug': current_product.slug,
     }))
-
-
-@user_passes_test(lambda user: user.is_superuser)
-def admin(request):
-    return render(request, 'adminapp/admin.html')

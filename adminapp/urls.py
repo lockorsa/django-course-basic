@@ -4,13 +4,13 @@ from adminapp import views as adminapp_views
 app_name = 'adminapp'
 
 urlpatterns = [
-    path('', adminapp_views.admin, name='admin'),
+    path('', adminapp_views.AdminIndex.as_view(), name='admin'),
     path('user/', adminapp_views.UserList.as_view(), name='users'),
     path('user/create/', adminapp_views.user_create, name='user_create'),
     path('user/update/<int:pk>/', adminapp_views.user_update, name='user_update'),
     path('user/delete/<int:pk>/', adminapp_views.user_delete, name='user_delete'),
 
-    path('categories/', adminapp_views.categories, name='categories'),
+    path('categories/', adminapp_views.CategoryList.as_view(), name='categories'),
     path('category/create/', adminapp_views.category_create, name='category_create'),
     path('category/update/<int:pk>/', adminapp_views.category_update, name='category_update'),
     path('category/delete/<int:pk>/', adminapp_views.category_delete, name='category_delete'),

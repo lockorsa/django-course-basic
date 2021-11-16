@@ -5,7 +5,7 @@
 1. pip install poetry (можно ставить в глобальный pip)
 2. poetry update (скачиваем пакеты из лок-файла)
 3. poetry shell (активируем окружение в терминале)
-* необходимо выполнять каждый раз при начале работы
+* последний пункт необходимо выполнять каждый раз при начале работы
 # Миграции
 1. python manage.py makemigrations
 2. python manage.py migrate
@@ -15,3 +15,6 @@
 2. manage.py loaddata categories
 # Добавляем в бд суперюзера (django geekbrains)
 1. python manage.py set_admin
+# Можно приступать к работе
+1. poetry shell
+2. python manage.py runserver
