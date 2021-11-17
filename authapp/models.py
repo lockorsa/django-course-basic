@@ -11,6 +11,10 @@ class ShopUser(AbstractUser):
     )
     birth_date = models.DateField(verbose_name='Дата рождения')
 
+    def delete(self):
+        self.is_active = not self.is_active
+        self.save()
+
     @property
     def age(self):
         """

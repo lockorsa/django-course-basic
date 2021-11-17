@@ -37,13 +37,6 @@ class ShopUserRegisterForm(UserCreationForm):
             'birth_date',
             'avatar',
         )
-    
-    """def clean_age(self):
-        data = self.cleaned_data['age']
-        if data < 18:
-            raise forms.ValidationError("Вы слишком молоды!")
-
-        return data"""
 
 
 class ShopUserEditForm(UserChangeForm):
