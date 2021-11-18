@@ -44,6 +44,9 @@
 			</div>
 		{% elif current_category and products %}
 			<h3>{{ current_category.description }}</h3>
+			{{ products.num_pages }}
+			{% include 'geekshop/includes/pagination.html' %}
+			
 			{% for product in products %}
 				<div class="details-products">
 					<div class="details-slider">

@@ -17,6 +17,7 @@ class ProductList(BasketMixin, CategoryMixin, ListView):
     """Один контроллер, чтобы править всеми."""
 
     model = Product
+    paginate_by = 2
     ordering = ('-price',)
     template_name = 'geekshop/products.html'
 
