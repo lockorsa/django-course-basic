@@ -5,12 +5,7 @@ from django.urls import reverse
 
 
 class BaseModel(models.Model):
-    """
-    Абстрактный класс, наследуемый товарами и категориями.
-
-    объединяет стандартные поля:
-    [name, description, created_at, updated_at]
-    """
+    """Абстрактный класс, наследуемый товарами и категориями."""
 
     max_length = 32
 
@@ -58,12 +53,6 @@ class Category(BaseModel):
     Категория/коллекция товаров.
 
     Категория имеет свой url и может ссылаться на любое количество товаров.
-
-    Наследует поля:
-    [name, description, created_at, updated_at]
-
-    Наследует методы:
-    [__str__]
     """
 
     products = models.ManyToManyField(
@@ -86,15 +75,9 @@ class Category(BaseModel):
 
 class Product(BaseModel):
     """
-    Товар в магазине.
+    Товар магазина.
 
-    Товар имеет свою цену, количество и фото.
-
-    Наследует поля:
-    [name, description, created_at, updated_at, slug(url)]
-
-    Наследует методы:
-    [__str__]
+    Товар добавляет к стандартным полям цену, количество и фото.
     """
 
     price = models.DecimalField(
@@ -118,7 +101,7 @@ class Product(BaseModel):
             viewname='geekshop:product',
             kwargs={'slug': self.slug},
         )
-    
+
     class Meta(object):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
