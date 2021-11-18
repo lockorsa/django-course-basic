@@ -34,7 +34,7 @@
 						</thead>
 
 						<tbody id="product_list">
-							{% for item in basket_items %}
+							{% for item in object_list %}
 								<tr id="basket">
 									<th scope="row" class="text-start">{{ item.product.name }}</th>    
 									<td>{{ item.product.price }}</td>

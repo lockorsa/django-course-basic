@@ -43,10 +43,8 @@ class ProductList(CallableMixin, AccessMixin, ListView):
 
 
 class ProductDetail(CallableMixin, AccessMixin, DetailView):
+    model = Product
     template_name = 'adminapp/product_detail.html'
-
-    def get_object(self):
-        return get_object_or_404(Product, pk=self.kwargs.get('pk'))
 
     def get_context_data(self, **kwargs):
         """Добавляем в контекст категорию товара."""
