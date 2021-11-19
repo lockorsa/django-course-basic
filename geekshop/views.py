@@ -13,34 +13,30 @@ class CategoryMixin:
         return context
 
 
+class ProductRoot(BasketMixin, CategoryMixin, DetailView):
+    context_object_name = 'promotion_product'
+    template_name = 'geekshop/products.html'
+
+    def get_object(self):
+        return get_promotion_product()
+
+
 class ProductList(BasketMixin, CategoryMixin, ListView):
     """Один контроллер, чтобы править всеми."""
 
     model = Product
-    paginate_by = 2
+    context_object_name = 'products'
     ordering = ('-price',)
+    paginate_by = 2
     template_name = 'geekshop/products.html'
 
     def get_queryset(self):
-        """
-        Наличие слага категории определяет возвращаемый объект.
-
-        Returns:
-            [Product_queryset]: список товаров категории
-            [promotion_product]: рекламный продукт, если запрос без слага
-        """
         queryset = super().get_queryset()
-        slug = self.kwargs.get('slug', False)
-        if slug:
-            self.context_object_name = 'products'
-            self.object_list = queryset.filter(categories__slug=slug)
-            # добавляем в контекст запрашиваемую категорию
-            self.extra_context = {
-                'current_category': Category.objects.get(slug=slug),
-            }
-        else:
-            self.context_object_name = 'promotion_product'
-            self.object_list = get_promotion_product()
+        slug = self.kwargs.get('slug')
+        self.object_list = queryset.filter(categories__slug=slug)
+        self.extra_context = {
+            'current_category': Category.objects.get(slug=slug),
+        }
         return self.object_list
 
 
@@ -59,5 +55,6 @@ class ProductDetail(BasketMixin, CategoryMixin, DetailView):
 
 
 # алиасы
+root = ProductRoot.as_view()
 products = ProductList.as_view()
 product_detail = ProductDetail.as_view()

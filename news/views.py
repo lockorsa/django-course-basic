@@ -1,17 +1,22 @@
-from django.shortcuts import render, get_object_or_404
+from django.views.generic import DetailView, ListView
 
+from adminapp.views.mixins import CallableMixin
+from basket.views import BasketMixin
 from news.models import Article
 
 
-def news(request):
-    context = {
-        'articles': Article.objects.filter(is_published=True),
-    }
-    return render(request, 'news/news.html', context=context)
+class NewsList(CallableMixin, BasketMixin, ListView):
+    queryset = Article.objects.filter(is_published=True)
+    context_object_name = 'articles'
+    template_name = 'news/news.html'
 
 
-def article(request, slug):
-    context = {
-        'article': get_object_or_404(Article, slug=slug),
-    }
-    return render(request, 'news/article.html', context=context)
+class ArticleDetail(CallableMixin, BasketMixin, DetailView):
+    model = Article
+    context_object_name = 'article'
+    template_name = 'news/article.html'
+
+
+# алиасы
+news = NewsList.as_view()
+article = ArticleDetail.as_view()
