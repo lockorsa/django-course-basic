@@ -1,0 +1,63 @@
+{% extends 'index/base.html' %}
+{% load static %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block js %}
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+{% endblock %}
+
+{% block header %}
+	<div class="hero">
+		<div class="header clearfix">
+			
+			{% include 'index/includes/top_menu.html'%}
+			
+		</div>
+		<h1>Корзина</h1>
+	</div>
+{% endblock %}
+
+{% block content %}
+	<div class="container py-3">
+        <div id="basket">
+			{% if basket.products.all %}
+				<div class="table-responsive">
+					<table class="table text-center">
+						<thead>
+							<tr>
+								<th>Название</th>                
+								<th>Цена</th>    
+								<th>Количество</th>
+								<th>Кнопка</th>                                        
+							</tr>
+						</thead>
+
+						<tbody id="product_list">
+							{% for item in object_list %}
+								<tr id="basket">
+									<th scope="row" class="text-start">{{ item.product.name }}</th>    
+									<td>{{ item.product.price }}</td>
+									<td>{{ item.count }}</td>
+									<td>
+										<a href="{% url 'basket:add' item.product.pk %}">
+											<button type="button" class="btn btn-success">Добавить</button>
+										</a>
+										<a href="{% url 'basket:remove' item.product.pk %}">
+											<button type="button" class="btn btn-danger">Удалить</button>
+										</a>
+									</td>                                   
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<p id="basket-info">
+						В корзине: {{ basket.products_count }} товаров на сумму {{ basket.products_price }} рублей
+					</p>
+				</div>
+			{% else %}
+				<h2 id="basket-empty-message" class="display-6 text-center mb-4">Корзина пуста...</h2>
+			{% endif %}
+        </div>
+    </div>
+{% endblock %}
