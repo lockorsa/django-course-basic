@@ -22,8 +22,6 @@ class ProductRoot(BasketMixin, CategoryMixin, DetailView):
 
 
 class ProductList(BasketMixin, CategoryMixin, ListView):
-    """Один контроллер, чтобы править всеми."""
-
     model = Product
     context_object_name = 'products'
     ordering = ('-price',)
@@ -31,9 +29,13 @@ class ProductList(BasketMixin, CategoryMixin, ListView):
     template_name = 'geekshop/products.html'
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        """Фильтрация товаров по категории и добавление в контекст."""
         slug = self.kwargs.get('slug')
-        self.object_list = queryset.filter(categories__slug=slug)
+        # фильтруем товары по категории
+        self.object_list = super().get_queryset().filter(
+            categories__slug=slug,
+        )
+        # добавляем в контекст запрашиваемую категорию
         self.extra_context = {
             'current_category': Category.objects.get(slug=slug),
         }
