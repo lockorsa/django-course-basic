@@ -1,5 +1,12 @@
+import datetime
+import hashlib
+
+import pytz
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
+from django.conf import settings
+from django.contrib.auth.forms import (
+    AuthenticationForm, UserCreationForm, UserChangeForm,
+)
 
 from authapp.models import ShopUser
 
@@ -25,6 +32,18 @@ class ShopUserRegisterForm(UserCreationForm):
             if field_name == 'birth_date':
                 years_range = [year for year in range(2010, 1920, -1)]
                 field.widget = forms.SelectDateWidget(years=years_range)
+
+    def save(self, *args, **kwargs):
+        user = super().save(*args, **kwargs)
+        user.is_active = False
+        user.register_activation_key = hashlib.sha1(
+            user.email.encode('utf8'),
+            ).hexdigest()
+        user.activation_key_expired = datetime.datetime.now(
+            pytz.timezone(settings.TIME_ZONE),
+        ) + datetime.timedelta(hours=48)
+        user.save()
+        return user
 
     class Meta:
         model = ShopUser

@@ -1,17 +1,24 @@
+from django.conf import settings
 from django.contrib import auth
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from authapp.forms import ShopUserLoginForm, ShopUserRegisterForm, ShopUserEditForm
+from authapp.forms import (
+    ShopUserEditForm, ShopUserLoginForm, ShopUserRegisterForm,
+)
+from authapp.models import ShopUser
 
 
 def register(request):
     if request.method == 'POST':
         register_form = ShopUserRegisterForm(request.POST, request.FILES)
         if register_form.is_valid():
-            register_form.save()
-            return HttpResponseRedirect(reverse('geekshop:index'))
+            user = register_form.save()
+            # здесь вернется bool-флаг отправки, можно обработать
+            send_verification_email(user)
+            return HttpResponseRedirect(reverse('index:index'))
     else:
         register_form = ShopUserRegisterForm()
     context = {
@@ -65,3 +72,34 @@ def edit(request):
         'edit_form': edit_form,
     }
     return render(request, 'authapp/edit.html', context=context)
+
+
+def verify(request, email, key):
+    user = get_object_or_404(
+        ShopUser,
+        email=email,
+        register_activation_key=key,
+    )
+    if not user.is_activation_key_expired():
+        user.activate()
+        auth.login(request, user)
+        return render(request, 'authapp/activation_success.html')
+    return HttpResponseBadRequest('ошибка')
+
+
+def send_verification_email(user):
+    verification_link = reverse('authapp:verify', args=[
+        user.email,
+        user.register_activation_key,
+    ])
+    full_link = settings.BASE_URL + verification_link
+    # так линтер не ругается на форматирование)
+    message = 'Your activation link: {link}'.format(link=full_link)
+
+    return send_mail(
+        'Account activation',
+        message,
+        settings.EMAIL_HOST_USER,
+        [user.email],
+        fail_silently=False,
+    )

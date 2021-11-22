@@ -157,4 +157,7 @@ EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = 'tmp/mail_drop'
+EMAIL_FILE_PATH = 'tmp/mail_drop/'
+
+
+BASE_URL = os.getenv('BASE_URL')

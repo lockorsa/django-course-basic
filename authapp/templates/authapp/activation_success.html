@@ -1,0 +1,8 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+{% block title %}Аккаунт подтвержден{% endblock %}
+
+{% block content %}
+    <h1>Аккаунт успешно подтвержден, перейти в <a href="{% url 'geekshop:products' %}">магазин</a></h1>
+{% endblock %}
