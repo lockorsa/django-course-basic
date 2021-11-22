@@ -1,17 +1,16 @@
 from django.views.generic import DetailView, ListView
 
 from adminapp.views.mixins import CallableMixin
-from basket.views import BasketMixin
 from news.models import Article
 
 
-class NewsList(CallableMixin, BasketMixin, ListView):
+class NewsList(CallableMixin, ListView):
     queryset = Article.objects.filter(is_published=True)
     context_object_name = 'articles'
     template_name = 'news/news.html'
 
 
-class ArticleDetail(CallableMixin, BasketMixin, DetailView):
+class ArticleDetail(CallableMixin, DetailView):
     model = Article
     context_object_name = 'article'
     template_name = 'news/article.html'

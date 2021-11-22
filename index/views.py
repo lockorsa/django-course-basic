@@ -1,14 +1,13 @@
 from django.views.generic import TemplateView
 
 from adminapp.views.mixins import CallableMixin
-from basket.views import BasketMixin
 
 
-class Index(CallableMixin, BasketMixin, TemplateView):
+class Index(CallableMixin, TemplateView):
     template_name = 'index/index.html'
 
 
-class Contact(CallableMixin, BasketMixin, TemplateView):
+class Contact(CallableMixin, TemplateView):
     template_name = 'index/contact.html'
 
 

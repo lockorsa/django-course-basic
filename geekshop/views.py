@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
 
-from basket.views import BasketMixin
 from geekshop.models import Category, Product
 from geekshop.services import get_promotion_product
 
@@ -13,7 +12,7 @@ class CategoryMixin:
         return context
 
 
-class ProductRoot(BasketMixin, CategoryMixin, DetailView):
+class ProductRoot(CategoryMixin, DetailView):
     context_object_name = 'promotion_product'
     template_name = 'geekshop/products.html'
 
@@ -21,7 +20,7 @@ class ProductRoot(BasketMixin, CategoryMixin, DetailView):
         return get_promotion_product()
 
 
-class ProductList(BasketMixin, CategoryMixin, ListView):
+class ProductList(CategoryMixin, ListView):
     model = Product
     context_object_name = 'products'
     ordering = ('-price',)
@@ -42,7 +41,7 @@ class ProductList(BasketMixin, CategoryMixin, ListView):
         return self.object_list
 
 
-class ProductDetail(BasketMixin, CategoryMixin, DetailView):
+class ProductDetail(CategoryMixin, DetailView):
     model = Product
     template_name = 'geekshop/product_detail.html'
 

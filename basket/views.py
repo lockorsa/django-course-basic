@@ -15,14 +15,7 @@ class LoginRequireMixin:
         return super().dispatch(request, *args, **kwargs)
 
 
-class BasketMixin:
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
-        context['basket'] = get_basket_or_create(user=self.request.user)
-        return context
-
-
-class BasketList(CallableMixin, LoginRequireMixin, BasketMixin, ListView):
+class BasketList(CallableMixin, LoginRequireMixin, ListView):
     model = BasketItem
     ordering = ('-count',)
     template_name = 'basket/basket.html'
