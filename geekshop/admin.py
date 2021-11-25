@@ -1,12 +1,11 @@
 from django.contrib import admin
+from geekshop.models import Product, Category
 
-from geekshop.models import Product, ProductCategory
 
-
-class ProductCategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 
-admin.site.register(ProductCategory, ProductCategoryAdmin)
+admin.site.register(Category, CategoryAdmin)
 
 admin.site.register(Product)

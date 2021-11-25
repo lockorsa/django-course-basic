@@ -1,0 +1,38 @@
+[
+    {
+        "model": "news.Article",
+        "pk": 1,
+        "fields": {
+            "name": "Открытие магазина",
+            "body": "Рыба бла бла бла текст много текста умный текст отличная статья продам гараж",
+            "is_published": true,
+            "slug": "otkritie-magazina",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "news.Article",
+        "pk": 2,
+        "fields": {
+            "name": "Сезон больших скидок",
+            "body": "Рыба бла бла бла текст много текста умный текст отличная статья продам гараж",
+            "is_published": true,
+            "slug": "sezon-bolshikh-skidok",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    },
+    {
+        "model": "news.Article",
+        "pk": 3,
+        "fields": {
+            "name": "Название статьи",
+            "body": "Рыба бла бла бла текст много текста умный текст отличная статья продам гараж кто прочитал тот сдохнет",
+            "is_published": true,
+            "slug": "nazvanie-stati",
+            "created_at": "2021-10-27 00:00:00",
+            "updated_at": "2021-10-27 00:00:00"
+        }
+    }
+]

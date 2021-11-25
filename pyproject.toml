@@ -8,6 +8,8 @@ authors = ["lockorsa <lockorsa@gmail.com>"]
 python = "^3.10"
 Django = "^3.2.8"
 Pillow = "^8.4.0"
+django-autoslug = "^1.9.8"
+python-dotenv = "^0.19.2"
 
 [tool.poetry.dev-dependencies]
 wemake-python-styleguide = "^0.15.3"
